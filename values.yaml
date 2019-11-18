@@ -1,0 +1,36 @@
+replicaCount: 1
+
+fullnameOverride: ""
+
+image:
+  helixApi:
+    repository: hqoapp/helix
+    tag: latest
+    pullPolicy: Always
+    createImagePullSecret: true
+
+  helixDb:
+    repository: hqoapp/mysql-local
+    tag: latest
+    pullPolicy: Always
+    createImagePullSecret: true
+
+  helixRedis:
+    repository: redis
+    tag: 5.0
+    pullPolicy: IfNotPresent
+
+imagePullSecrets:
+  - name: docker-credentials
+
+api:
+  port: 3000
+  healthcheck:
+    url: /api/healthcheck
+
+db:
+  port: 3306
+
+service:
+  type: LoadBalancer
+  port: 80
