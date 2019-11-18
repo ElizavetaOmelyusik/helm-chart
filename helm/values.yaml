@@ -7,13 +7,15 @@ image:
     repository: hqoapp/helix
     tag: latest
     pullPolicy: Always
-    createImagePullSecret: true
+    imagePullSecrets:
+     - name: docker-credentials
 
   helixDb:
     repository: hqoapp/mysql-local
     tag: latest
     pullPolicy: Always
-    createImagePullSecret: true
+    imagePullSecrets:
+     - name: docker-credentials
 
   helixRedis:
     repository: redis
